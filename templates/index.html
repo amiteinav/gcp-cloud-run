@@ -1,0 +1,32 @@
+<!doctype html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Convert .doc to .pdf</title>
+    <link rel="stylesheet" href="https://unpkg.com/awsm.css/dist/awsm.min.css">
+</head>
+
+<body>
+    <header>
+        <h1>Crop <code>images</code></h1>
+        <p>
+            This service chops image based on coordinates.
+        </p>
+    </header>
+    <main>
+        <form method="post" enctype=multipart/form-data> 
+            <label for="file">Upload your file</label>
+            <input type="file" name="file" id="file">
+            <input type="submit" value="Upload">
+        </form>
+    </main>
+    <footer>
+        <p><b>Pro tip:</b> You can also provide the URL of a picture to convert with the <code>url</code> query parameter.
+            <br>
+            For example <a href="https://cropper-rjxrs4o6dq-uc.a.run.app?url=https://storage.googleapis.com/cloud-run-bucket/amit-profile-pic.jpg&xmin=10&ymin=10&xmax=50&ymax=100">/
+                ?url=https://storage.googleapis.com/app-imm-bucket-in/amit-profile-pic.png&xmin=10&ymin=10&xmax=50&ymax=100
+            </a>
+        </p>
+        <p>Made by <a href="https://gitub.com/amiteinav">@amiteinav</a> - Sources on <a href="https://https://github.com/amiteinav/gcp-cloud-run">GitHub</a></p>
+    </footer>
+</body>
