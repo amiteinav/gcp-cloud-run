@@ -2,6 +2,8 @@
 
 import  random, os, sys, urllib2, json, random, getopt, base64, csv, datetime, subprocess
 from PIL import Image
+from google.cloud import storage
+
 
 def crop(image_path, coords, saved_location):
     """
