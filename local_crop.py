@@ -107,43 +107,15 @@ def iterate_through_xml(xmlfile,imagedir,tags_dir):
 
 def main(argv):
 
-	xmldir=''
-	imagedir=''
-	xmlfile=''
-
-	try:
-		#opts, args = getopt.getopt(argv,"x:e:d:",["xml-file=","xml-dir=","images-dir="])
-		opts, args = getopt.getopt(argv,"d:x:t:e:s:")
-	except getopt.GetoptError:
-		sys.exit(42)
-	for opt, arg in opts:
-		if opt in ("-x", "--xml-file"):
-			xmlfile = arg
-			if not os.path.isfile(xmlfile):
-				print ('xml file {}, does not exist'.format(xmlfile) )
-				exit(4)
-		elif opt in ("-e", "--xml-dir="):
-			xmldir= arg
-			if not os.path.isdir(xmldir):
-				print ('xml dir {}, does not exist'.format(xmldir) )
-				exit(4)
-		elif opt in ("-d", "--images-dir="):
-			imagedir = arg
-			if not os.path.isdir(imagedir):
-				print ('images folder {}, does not exist'.format(imagedir) )
-				exit(4)
-		elif opt in ("-s", "--skip_files="):
-			skip_files=arg
-		elif opt in ("-t", "--tags-dir="):
-			tags_dir= arg
-			create_dir(tags_dir)
-		#elif opt == "-w":
-	#		working_directory = arg
-
-
-	iterate_through_xml_dir(xmldir,imagedir,tags_dir,skip_files)
-
-	#iterate_through_xml(xmlfile)
+    imgfilepath="amit-profile-pic.jpg"
+    outfile="amit-profile-pic-cropped.jpg"
+    xmin=10
+    ymin=10
+    xmax=100
+    ymax=100
+    coords=(float(xmin),float(ymin),float(xmax),float(ymax))
+    crop(imgfilepath, coords, outfile)
+	#iterate_through_xml_dir(xmldir,imagedir,tags_dir,skip_files)
 
 if __name__ == "__main__":
 	script_name=sys.argv[0]
