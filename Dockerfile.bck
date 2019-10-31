@@ -1,0 +1,10 @@
+FROM python:3-alpine
+
+ENV APP_HOME /app
+WORKDIR $APP_HOME
+
+RUN pip install Flask requests 
+RUN pip install gevent
+COPY . $APP_HOME
+
+CMD ["python", "chop.py"]
