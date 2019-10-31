@@ -126,7 +126,4 @@ if __name__ == "__main__":
 	script_name=sys.argv[0]
 	arguments = len(sys.argv) - 1
 
-	if (arguments == 0):
-		sys.exit(42)
-
 	main(sys.argv[1:])
