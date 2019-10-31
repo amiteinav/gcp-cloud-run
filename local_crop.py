@@ -15,6 +15,18 @@ def crop(image_path, coords, saved_location):
     cropped_image = image_obj.crop(coords)
     cropped_image.save(saved_location)
 
+def upload_blob(bucket_name, source_file_name, destination_blob_name):
+    """Uploads a file to the bucket."""
+    storage_client = storage.Client()
+    bucket = storage_client.get_bucket(bucket_name)
+    blob = bucket.blob(destination_blob_name)
+
+    blob.upload_from_filename(source_file_name)
+
+    print('File {} uploaded to {}.'.format(
+        source_file_name,
+        destination_blob_name))
+
 def main(argv):
 
     print ('starting')
@@ -28,6 +40,10 @@ def main(argv):
     coords=(float(xmin),float(ymin),float(xmax),float(ymax))
     print (coords)
     crop(imgfilepath, coords, outfile)
+
+    bucket_name='app-imm-bucket-out'
+
+    upload_blob(bucket_name, outfile, outfile)
 
 
 if __name__ == "__main__":
