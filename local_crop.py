@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import cv2, random, os, sys, urllib2, json, random, getopt, base64, csv, datetime, subprocess
+import  random, os, sys, urllib2, json, random, getopt, base64, csv, datetime, subprocess
 import xml.etree.ElementTree as ET
 
 #pip install Pillow
