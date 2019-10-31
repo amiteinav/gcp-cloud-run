@@ -28,7 +28,7 @@ def main(argv):
     coords=(float(xmin),float(ymin),float(xmax),float(ymax))
     print (coords)
     crop(imgfilepath, coords, outfile)
-	#iterate_through_xml_dir(xmldir,imagedir,tags_dir,skip_files)
+
 
 if __name__ == "__main__":
 	script_name=sys.argv[0]
