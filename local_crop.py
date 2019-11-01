@@ -27,17 +27,17 @@ def main(argv):
     ymax=100
 
     try:
-		#opts, args = getopt.getopt(argv,"x:e:d:",["xml-file=","xml-dir=","images-dir="])
-		opts, args = getopt.getopt(argv,"d:x:t:e:s:")
+        #opts, args = getopt.getopt(argv,"x:e:d:",["xml-file=","xml-dir=","images-dir="])
+        opts, args = getopt.getopt(argv,"d:x:t:e:s:")
     except getopt.GetoptError:
-		sys.exit(42)
+        sys.exit(42)
     for opt, arg in opts:
-		if opt in ("-i", "--input-file"):
-			imgfilepath = arg
-			if not os.path.isfile(imgfilepath):
-				print ('xml file {}, does not exist'.format(imgfilepath))
-				exit(4)
-		elif opt in ("-x", "--xmax"):
+        if opt in ("-i", "--input-file"):
+            imgfilepath = arg
+            if not os.path.isfile(imgfilepath):
+                print ('xml file {}, does not exist'.format(imgfilepath))
+                exit(4)
+        elif opt in ("-x", "--xmax"):
             xmax = arg
         elif opt in ("-y", "--ymax"):
             ymax = arg
