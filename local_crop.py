@@ -21,6 +21,8 @@ def main(argv):
     imgfilepath="amit-profile-pic.jpg"
     outfile="amit-profile-pic-cropped.jpg"
 
+    xmin=0.0
+
     try:
         #opts, args = getopt.getopt(argv,"x:e:d:",["xml-file=","xml-dir=","images-dir="])
         opts, args = getopt.getopt(argv,"i:o:w:x:y:z:",["input-file=","output-file=","xmax=","xmin=","ymax=","ymin="])
@@ -40,8 +42,6 @@ def main(argv):
         elif opt in ("-z","--ymin"):
             ymin = float(arg)
     
-
-
     coords=(float(xmin),float(ymin),float(xmax),float(ymax))
     crop(imgfilepath, coords, outfile)
 
