@@ -27,7 +27,7 @@ def main(argv):
 
     try:
         #opts, args = getopt.getopt(argv,"x:e:d:",["xml-file=","xml-dir=","images-dir="])
-        opts, args = getopt.getopt(argv,"i:o:w:x:y:z:")
+        opts, args = getopt.getopt(argv,"i:o:w:x:y:z:",["input-file","output-file","xmax","xmin","ymax","ymin"])
     except getopt.GetoptError:
         sys.exit(42)
     for opt, arg in opts:
