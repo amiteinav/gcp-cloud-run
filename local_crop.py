@@ -11,7 +11,6 @@ def crop(image_path, coords, saved_location):
     @param coords: A tuple of x/y coordinates (x1, y1, x2, y2)
     @param saved_location: Path to save the cropped image
     """
-    print ('crop')
 
     image_obj = Image.open(image_path)
     cropped_image = image_obj.crop(coords)
@@ -37,6 +36,8 @@ def main(argv):
             if not os.path.isfile(imgfilepath):
                 print ('xml file {}, does not exist'.format(imgfilepath))
                 exit(4)
+        elif opt in ("-o","--output-file"):
+            outfile=arg
         elif opt in ("-x", "--xmax"):
             xmax = arg
         elif opt in ("-y", "--ymax"):
