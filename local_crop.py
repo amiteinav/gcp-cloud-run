@@ -27,15 +27,12 @@ def main(argv):
 
     try:
         #opts, args = getopt.getopt(argv,"x:e:d:",["xml-file=","xml-dir=","images-dir="])
-        opts, args = getopt.getopt(argv,"d:x:t:e:s:")
+        opts, args = getopt.getopt(argv,"i:o:w:x:y:z:")
     except getopt.GetoptError:
         sys.exit(42)
     for opt, arg in opts:
         if opt in ("-i", "--input-file"):
             imgfilepath = arg
-            if not os.path.isfile(imgfilepath):
-                print ('xml file {}, does not exist'.format(imgfilepath))
-                exit(4)
         elif opt in ("-o","--output-file"):
             outfile=arg
         elif opt in ("-x", "--xmax"):
