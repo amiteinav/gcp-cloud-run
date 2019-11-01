@@ -7,6 +7,10 @@ WORKDIR $APP_HOME
 
 RUN pip install Pillow
 RUN pip install Flask requests gevent 
+RUN pip install google-cloud-storage
+
+RUN curl -sSL https://sdk.cloud.google.com | bash
+ENV PATH $PATH:/root/google-cloud-sdk/bin
 
 COPY . $APP_HOME
 
