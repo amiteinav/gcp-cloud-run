@@ -32,14 +32,15 @@ def main(argv):
         elif opt in ("-o","--output-file"):
             outfile=arg
         elif opt in ("-x", "--xmax"):
-            xmax = arg
+            xmax = float(arg)
         elif opt in ("-y", "--ymax"):
-            ymax = arg
+            ymax = float(arg)
         elif opt in ("-w","--xmin"):
-            xmin = arg
+            xmin = float(arg)
         elif opt in ("-z","--ymin"):
-            ymin = arg
-        
+            ymin = float(arg)
+    
+
 
     coords=(float(xmin),float(ymin),float(xmax),float(ymax))
     crop(imgfilepath, coords, outfile)
