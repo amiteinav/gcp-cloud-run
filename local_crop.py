@@ -22,6 +22,9 @@ def main(argv):
     outfile="amit-profile-pic-cropped.jpg"
 
     xmin=0.0
+    ymin=0.0
+    xmax=0.0
+    ymax=0.0
 
     try:
         #opts, args = getopt.getopt(argv,"x:e:d:",["xml-file=","xml-dir=","images-dir="])
@@ -32,7 +35,7 @@ def main(argv):
         if opt in ("-i", "--input-file"):
             imgfilepath = arg
         elif opt in ("-o","--output-file"):
-            outfile=arg
+            outfile = arg
         elif opt in ("-x", "--xmax"):
             xmax = float(arg)
         elif opt in ("-y", "--ymax"):
