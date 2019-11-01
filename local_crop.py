@@ -20,10 +20,6 @@ def main(argv):
 
     imgfilepath="amit-profile-pic.jpg"
     outfile="amit-profile-pic-cropped.jpg"
-    xmin=10
-    ymin=10
-    xmax=100
-    ymax=100
 
     try:
         #opts, args = getopt.getopt(argv,"x:e:d:",["xml-file=","xml-dir=","images-dir="])
