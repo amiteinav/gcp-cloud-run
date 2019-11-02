@@ -29,7 +29,7 @@ def main(argv):
 
     try:
         #opts, args = getopt.getopt(argv,"x:e:d:",["xml-file=","xml-dir=","images-dir="])
-        opts, args = getopt.getopt(argv,"i:o:l:r:u:r:",["input-file=","output-file=","left=", "upper=", "right=", "lower="])
+        opts, args = getopt.getopt(argv,"i:o:l:r:u:w:",["input-file=","output-file=","left=", "upper=", "right=", "lower="])
     except getopt.GetoptError:
         sys.exit(42)
     for opt, arg in opts:
@@ -43,7 +43,7 @@ def main(argv):
             ymax = float(arg)
         elif opt in ("-u","--upper"):
             xmin = float(arg)
-        elif opt in ("-l","--lower"):
+        elif opt in ("-w","--lower"):
             ymin = float(arg)
     
     coords=(float(xmax),float(xmin),float(ymax),float(ymin))
