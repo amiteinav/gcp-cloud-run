@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import  random, os, sys, urllib2, json, random, getopt, base64, csv, datetime, subprocess
+import  random, os, sys, json, random, getopt, base64, csv, datetime, subprocess
 from PIL import Image
 from google.cloud import storage
 
