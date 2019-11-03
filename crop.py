@@ -7,7 +7,6 @@ from PIL import Image
 from google.cloud import storage
 
 UPLOAD_FOLDER = '/tmp'
-ALLOWED_EXTENSIONS = set(['jpg', 'jpeg', 'png', 'bmp'])
 
 app = Flask(__name__)
 
@@ -15,14 +14,21 @@ app = Flask(__name__)
 
 def api():
     
-    gcsfile='gs://app-imm-bucket-out/amit-profile-pic-2.jpg'
-    file_name='amit-profile-pic.jpg'
+    bucket='gs://app-imm-bucket-out/'
+    inputfile='amit-profile-pic.jpg'
+    outputfile='amit-profile-pic-crop.jpg'
+    gcsfile=bucket + outputfile
 
-    call('gsutil cp %s %s' % (file_name, gcsfile), shell=True)
+    xmax=0.0
+    xmin=5.0
+    ymax=10.0
+    ymin=15.0
 
-    #upload_blob(bucket_name, 'amit-profile-pic.jpg', 'amit-profile-pic.jpg')
-    
-    #crop(input_file_path, coords, output_file_path)
+    command = 'python local_crop.py -i ' + inputfile + ' -o ' + outputfile + ' -l ' +xmax + ' -r ' + xmin + ' -u ' + ymax +  ' -w ' + ymin
+    call('%s' % (command),shell=True)
+
+    command = 'gsutil cp ' + outputfile + ' ' + gcsfile
+    call('gsutil cp %s' % (command), shell=True)
 
     return "done"
     
