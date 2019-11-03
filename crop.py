@@ -24,13 +24,16 @@ def api():
     ymax=10.0
     ymin=15.0
 
-    command = 'python local_crop.py -i ' + inputfile + ' -o ' + outputfile + ' -l ' +xmax + ' -r ' + xmin + ' -u ' + ymax +  ' -w ' + ymin
+    print ('now cropping')
+
+    command = 'python local_crop.py -i ' + inputfile + ' -o ' + outputfile + ' -l ' +str(xmax) + ' -r ' + str(xmin) + ' -u ' + str(ymax) +  ' -w ' + str(ymin)
     call('%s' % (command),shell=True)
 
+    print ('now uploading')
     command = 'gsutil cp ' + outputfile + ' ' + gcsfile
-    call('gsutil cp %s' % (command), shell=True)
+    call('%s' % (command), shell=True)
 
-    return "done"
+    return "\ndone\n"
     
 if __name__ == "__main__":
     http_server = WSGIServer(('', int(os.environ.get('PORT', 8080))), app)
