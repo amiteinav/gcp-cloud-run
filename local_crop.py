@@ -38,21 +38,21 @@ def main(argv):
 
     try:
         #opts, args = getopt.getopt(argv,"x:e:d:",["xml-file=","xml-dir=","images-dir="])
-        opts, args = getopt.getopt(argv,"i:o:l:r:t:b:",["input-file=","output-file=","left=", "right=", "top=", "bottom="])
+        opts, args = getopt.getopt(argv,"i:o:l:r:t:b:")
     except getopt.GetoptError:
         sys.exit(42)
     for opt, arg in opts:
-        if opt in ("-i", "--input-file"):
+        if opt == "-i":
             imgfilepath = arg
-        elif opt in ("-o","--output-file"):
+        elif opt == "-o":
             outfile = arg
-        elif opt in ("-l", "--left"):
+        elif opt == "-l":
             left = float(arg)
-        elif opt in ("-r", "--right"):
+        elif opt == "-r":
             right = float(arg)
-        elif opt in ("-u","--top"):
+        elif opt == "-t":
             top = float(arg)
-        elif opt in ("-w","--bottom"):
+        elif opt == "-b":
             bottom = float(arg)
     
 
