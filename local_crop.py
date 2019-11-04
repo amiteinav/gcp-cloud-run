@@ -12,12 +12,6 @@ python local_crop.py -l 320 -t 392 -r 960 -b 1117
 """
 
 def crop(image_path, coords, saved_location):
-    """
-    @param image_path: The path to the image to edit
-    
-    @param coords: A tuple of x/y coordinates (x1, y1, x2, y2) - left, upper, right, lower
-    @param saved_location: Path to save the cropped image
-    """
 
     image_obj = Image.open(image_path)
     cropped_image = image_obj.crop(coords)
@@ -28,13 +22,13 @@ def main(argv):
     imgfilepath="amit-profile-pic.jpg"
     outfile="amit-profile-pic-cropped.jpg"
 
-    # this is to be used when no parameters are sent
-    #original = Image.open(imgfilepath)
-    #width, height = original.size   # Get dimensions
-    #left = width/4
-    #top = height/4
-    #right = 3 * width/4
-    #bottom = 3 * height/4
+    #this is to be used when no parameters are sent
+    original = Image.open(imgfilepath)
+    width, height = original.size   # Get dimensions
+    left = width/4
+    top = height/4
+    right = 3 * width/4
+    bottom = 3 * height/4
 
     try:
         #opts, args = getopt.getopt(argv,"x:e:d:",["xml-file=","xml-dir=","images-dir="])
