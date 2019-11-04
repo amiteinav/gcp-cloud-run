@@ -19,10 +19,19 @@ def api():
     outputfile='amit-profile-pic-crop.jpg'
     gcsfile=bucket + outputfile
 
-    xmax=0.0
-    xmin=5.0
-    ymax=10.0
-    ymin=15.0
+    xmax=50.0
+    xmin=0.0
+    ymax=100.0
+    ymin=10.0
+
+    if request.method == 'GET':
+        url = request.args.get('url', type=str)
+        if not url:
+            return render_template('index.html')
+        xmin = request.args.get('xmin', type=int)
+        ymin = request.args.get('ymin', type=int)
+        xmax = request.args.get('xmax', type=int)
+        ymax = request.args.get('ymax', type=int)
 
     print ('now cropping')
 
