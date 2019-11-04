@@ -1,8 +1,9 @@
-import os, shutil, requests, tempfile, random
+import os, shutil, requests, tempfile, random, subprocess
 
 from gevent.pywsgi import WSGIServer
 from flask import Flask, after_this_request, render_template, request, send_file
 from subprocess import call
+
 from PIL import Image
 from google.cloud import storage
 
@@ -22,7 +23,7 @@ def api():
     left=320.0
     top=392.0
     right=960.0
-    bottom=117.0
+    bottom=1103.0
     
     if request.method == 'GET':
         url = request.args.get('url', type=str)
@@ -36,22 +37,26 @@ def api():
         
         file.close()
 
-        left = request.args.get('left', type=int)
-        top = request.args.get('top', type=int)
-        right = request.args.get('right', type=int)
-        bottom = request.args.get('bottom', type=int)
+        left = request.args.get('left', type=str)
+        top = request.args.get('top', type=str)
+        right = request.args.get('right', type=str)
+        bottom = request.args.get('bottom', type=str)
 
-    #command ='ls -l /tmp/'
-    #result=call('%s' % (command),shell=True)
+    command = 'python local_crop.py -i ' + inputfile + ' -o ' + outputfile + ' -l ' + left + ' -t ' + top + ' -r ' + right +  ' -b ' + bottom
+    string = command + '\n'
+    #command = 'python local_crop.py -i ' + inputfile + ' -o ' + outputfile + ' -l ' + str(300) + ' -t ' + str(352) + ' -r ' + str(760) +  ' -b ' + str(1100)
 
-    command = 'python local_crop.py -i ' + inputfile + ' -o ' + outputfile + ' -l ' +str(left) + ' -t ' + str(top) + ' -r ' + str(right) +  ' -b ' + str(bottom)
     call('%s' % (command),shell=True)
 
     command = 'gsutil cp ' + outputfile + ' ' + gcsfile
     call('%s' % (command), shell=True)
 
-    return "\ndone\n"
+    #string='top:' + top  + ' right:' + right + ' left:' + left +   + ' bottom:' + bottom
+    #return string
     #return result
+
+    return send_file(outputfile, mimetype='image/jpg')
+
 
 if __name__ == "__main__":
     http_server = WSGIServer(('', int(os.environ.get('PORT', 8080))), app)
