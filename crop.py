@@ -17,7 +17,7 @@ def api():
     bucket='gs://app-imm-bucket-out/'
     inputfile='/tmp/pic.jpg'
     outputfile='/tmp/pic-crop.jpg'
-    gcsfile=bucket + outputfile
+    gcsfile=bucket + 'pic-crop.jpg'
 
     left=320.0
     top=392.0
@@ -34,7 +34,8 @@ def api():
         with open(inputfile, 'wb') as file:
             shutil.copyfileobj(response.raw, file)
         
-        
+        file.close()
+
         left = request.args.get('left', type=int)
         top = request.args.get('top', type=int)
         right = request.args.get('right', type=int)
