@@ -29,12 +29,12 @@ def main(argv):
     outfile="amit-profile-pic-cropped.jpg"
 
     # this is to be used when no parameters are sent
-    original = Image.open(imgfilepath)
-    width, height = original.size   # Get dimensions
-    left = width/4
-    top = height/4
-    right = 3 * width/4
-    bottom = 3 * height/4
+    #original = Image.open(imgfilepath)
+    #width, height = original.size   # Get dimensions
+    #left = width/4
+    #top = height/4
+    #right = 3 * width/4
+    #bottom = 3 * height/4
 
     try:
         #opts, args = getopt.getopt(argv,"x:e:d:",["xml-file=","xml-dir=","images-dir="])
