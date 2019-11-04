@@ -46,7 +46,12 @@ def main(argv):
         elif opt in ("-w","--lower"):
             ymin = float(arg)
     
+
     coords=(float(xmax),float(xmin),float(ymax),float(ymin))
+
+    print (coords)
+
+
     crop(imgfilepath, coords, outfile)
 
 if __name__ == "__main__":
