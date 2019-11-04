@@ -24,8 +24,8 @@ def main(argv):
 
     xmin=0.0
     ymin=0.0
-    xmax=0.0
-    ymax=0.0
+    xmax=100.0
+    ymax=100.0
 
     try:
         #opts, args = getopt.getopt(argv,"x:e:d:",["xml-file=","xml-dir=","images-dir="])
