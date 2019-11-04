@@ -4,6 +4,12 @@ import  random, os, sys, json, random, getopt, base64, csv, datetime, subprocess
 from PIL import Image
 from google.cloud import storage
 
+"""
+Example:
+
+python local_crop.py -l 320 -t 392 -r 960 -b 1117
+
+"""
 
 def crop(image_path, coords, saved_location):
     """
@@ -32,7 +38,7 @@ def main(argv):
 
     try:
         #opts, args = getopt.getopt(argv,"x:e:d:",["xml-file=","xml-dir=","images-dir="])
-        opts, args = getopt.getopt(argv,"i:o:l:r:u:w:",["input-file=","output-file=","left=", "upper=", "right=", "lower="])
+        opts, args = getopt.getopt(argv,"i:o:l:r:t:b:",["input-file=","output-file=","left=", "right=", "top=", "bottom="])
     except getopt.GetoptError:
         sys.exit(42)
     for opt, arg in opts:
@@ -44,9 +50,9 @@ def main(argv):
             left = float(arg)
         elif opt in ("-r", "--right"):
             right = float(arg)
-        elif opt in ("-u","--upper"):
+        elif opt in ("-u","--top"):
             top = float(arg)
-        elif opt in ("-w","--lower"):
+        elif opt in ("-w","--bottom"):
             bottom = float(arg)
     
 
