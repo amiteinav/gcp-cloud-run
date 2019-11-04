@@ -15,10 +15,9 @@ app = Flask(__name__)
 def api():
     
     bucket='gs://app-imm-bucket-out/'
-    inputfile='pic.jpg'
-    outputfile='pic-crop.jpg'
+    inputfile='/tmp/pic.jpg'
+    outputfile='/tmp/pic-crop.jpg'
     gcsfile=bucket + outputfile
-
 
     left=320.0
     top=392.0
@@ -41,7 +40,8 @@ def api():
         right = request.args.get('right', type=int)
         bottom = request.args.get('bottom', type=int)
 
-    print ('now cropping')
+    #command ='ls -l /tmp/'
+    #result=call('%s' % (command),shell=True)
 
     command = 'python local_crop.py -i ' + inputfile + ' -o ' + outputfile + ' -l ' +str(left) + ' -t ' + str(top) + ' -r ' + str(right) +  ' -b ' + str(bottom)
     call('%s' % (command),shell=True)
@@ -50,7 +50,8 @@ def api():
     call('%s' % (command), shell=True)
 
     return "\ndone\n"
-    
+    #return result
+
 if __name__ == "__main__":
     http_server = WSGIServer(('', int(os.environ.get('PORT', 8080))), app)
     http_server.serve_forever()
