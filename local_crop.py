@@ -27,6 +27,14 @@ def main(argv):
     xmax=0.0
     ymax=0.0
 
+    original = Image.open(imgfilepath)
+    width, height = original.size   # Get dimensions
+    left = width/4
+    top = height/4
+    right = 3 * width/4
+    bottom = 3 * height/4
+
+
     try:
         #opts, args = getopt.getopt(argv,"x:e:d:",["xml-file=","xml-dir=","images-dir="])
         opts, args = getopt.getopt(argv,"i:o:l:r:u:w:",["input-file=","output-file=","left=", "upper=", "right=", "lower="])
@@ -47,11 +55,10 @@ def main(argv):
             ymin = float(arg)
     
 
-    coords=(float(xmax),float(xmin),float(ymax),float(ymin))
+    coords=(left, top, right, bottom)
 
+    #coords=(float(xmax),float(xmin),float(ymax),float(ymin))
     print (coords)
-
-
     crop(imgfilepath, coords, outfile)
 
 if __name__ == "__main__":
