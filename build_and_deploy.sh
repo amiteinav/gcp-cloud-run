@@ -24,7 +24,7 @@ gsutil ls gs://${bucket}
 URL=`gcloud beta run  services list --platform managed --project ${project} | grep cropper | awk '{print $4}'`
 echo "curl $URL"
 
-URL=${URL}?usrl=https://storage.googleapis.com/cloud-run-bucket/amit-profile-pic.jpg&xmin=10&xmax=100&ymin=10&ymax=100
+URL=${URL}"?url=https://storage.googleapis.com/cloud-run-bucket/amit-profile-pic.jpg&xmin=10&xmax=1000&ymin=10&ymax=1000"
 curl $URL
 
 #curl "https://cropper-rjxrs4o6dq-uc.a.run.app?url=https://storage.googleapis.com/cloud-run-bucket/amit-profile-pic.jpg&xmin=10&ymin=10&&ymax=100"
