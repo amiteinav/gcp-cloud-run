@@ -3,6 +3,7 @@
 import  random, os, sys, json, random, getopt, base64, csv, datetime, subprocess
 from PIL import Image
 from google.cloud import storage
+from subprocess import call
 
 """
 Example:
@@ -49,6 +50,10 @@ def main(argv):
         elif opt == "-b":
             bottom = float(arg)
     
+    command ='ls -l /tmp/'
+    result=call('%s' % (command),shell=True)
+
+    print (result)
 
     coords=(float(left), float(top), float(right), float(bottom))
     print (coords)
