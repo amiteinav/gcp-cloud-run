@@ -38,6 +38,10 @@ def api():
     command = 'python local_crop.py -i ' + inputfile + ' -o ' + outputfile + ' -l ' +str(xmax) + ' -r ' + str(xmin) + ' -u ' + str(ymax) +  ' -w ' + str(ymin)
     call('%s' % (command),shell=True)
 
+    command = 'ls -l'
+    call('%s' % (command), shell=True)
+
+
     print ('now uploading')
     command = 'gsutil cp ' + outputfile + ' ' + gcsfile
     call('%s' % (command), shell=True)
