@@ -22,18 +22,13 @@ def main(argv):
     imgfilepath="amit-profile-pic.jpg"
     outfile="amit-profile-pic-cropped.jpg"
 
-    xmin=100.0
-    ymin=100.0
-    xmax=0.0
-    ymax=0.0
-
+    # this is to be used when no parameters are sent
     original = Image.open(imgfilepath)
     width, height = original.size   # Get dimensions
     left = width/4
     top = height/4
     right = 3 * width/4
     bottom = 3 * height/4
-
 
     try:
         #opts, args = getopt.getopt(argv,"x:e:d:",["xml-file=","xml-dir=","images-dir="])
@@ -46,18 +41,16 @@ def main(argv):
         elif opt in ("-o","--output-file"):
             outfile = arg
         elif opt in ("-l", "--left"):
-            xmax = float(arg)
+            left = float(arg)
         elif opt in ("-r", "--right"):
-            ymax = float(arg)
+            right = float(arg)
         elif opt in ("-u","--upper"):
-            xmin = float(arg)
+            top = float(arg)
         elif opt in ("-w","--lower"):
-            ymin = float(arg)
+            bottom = float(arg)
     
 
-    coords=(left, top, right, bottom)
-
-    #coords=(float(xmax),float(xmin),float(ymax),float(ymin))
+    coords=(float(left), float(top), float(right), float(bottom))
     print (coords)
     crop(imgfilepath, coords, outfile)
 
