@@ -15,34 +15,37 @@ app = Flask(__name__)
 def api():
     
     bucket='gs://app-imm-bucket-out/'
-    inputfile='amit-profile-pic.jpg'
-    outputfile='amit-profile-pic-crop.jpg'
+    inputfile='pic.jpg'
+    outputfile='pic-crop.jpg'
     gcsfile=bucket + outputfile
 
-    xmax=50.0
-    xmin=0.0
-    ymax=100.0
-    ymin=10.0
 
+    left=320.0
+    top=392.0
+    right=960.0
+    bottom=117.0
+    
     if request.method == 'GET':
         url = request.args.get('url', type=str)
+
         if not url:
             return render_template('index.html')
-        xmin = request.args.get('xmin', type=int)
-        ymin = request.args.get('ymin', type=int)
-        xmax = request.args.get('xmax', type=int)
-        ymax = request.args.get('ymax', type=int)
+        
+        response = requests.get(url, stream=True)
+        with open(inputfile, 'wb') as file:
+            shutil.copyfileobj(response.raw, file)
+        
+        
+        left = request.args.get('left', type=int)
+        top = request.args.get('top', type=int)
+        right = request.args.get('right', type=int)
+        bottom = request.args.get('bottom', type=int)
 
     print ('now cropping')
 
-    command = 'python local_crop.py -i ' + inputfile + ' -o ' + outputfile + ' -l ' +str(xmax) + ' -r ' + str(xmin) + ' -u ' + str(ymax) +  ' -w ' + str(ymin)
+    command = 'python local_crop.py -i ' + inputfile + ' -o ' + outputfile + ' -l ' +str(left) + ' -t ' + str(top) + ' -r ' + str(right) +  ' -b ' + str(bottom)
     call('%s' % (command),shell=True)
 
-    command = 'ls -l'
-    call('%s' % (command), shell=True)
-
-
-    print ('now uploading')
     command = 'gsutil cp ' + outputfile + ' ' + gcsfile
     call('%s' % (command), shell=True)
 
