@@ -1,5 +1,8 @@
 #!/bin/bash
 
+project=`gcloud config get-value project`
+echo "using project $project"
+
 echo "CTRL+C to stop"
 
 URL=`gcloud beta run  services list --platform managed --project ${project} | grep cropper | awk '{print $4}'`
