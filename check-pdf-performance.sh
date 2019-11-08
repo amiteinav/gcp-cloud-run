@@ -10,6 +10,8 @@ URL=https://pdf-amit-65aqzgjh5a-uc.a.run.app
 function perf {
   curl -o /dev/null -s -w "%{time_connect} + %{time_starttransfer} = %{time_total}\n" "$1" >> $trackingfile &
 }
+index=1000000
+
 
 while [ $index -gt 0 ] ; do
 
