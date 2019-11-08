@@ -13,8 +13,16 @@ URL=${URL}"?url=https://upload.wikimedia.org/wikipedia/commons/d/da/Guido-portra
 
 index=1000000
 
+#curl -o /dev/null -s -w 'Total time: %{time_total}s\n' $URL >> $trackingfile &
+
+function perf {
+  curl -o /dev/null -s -w "%{time_connect} + %{time_starttransfer} = %{time_total}\n" "$1" &
+}
+
 while [ $index -gt 0 ] ; do
 
-curl -o /dev/null -s -w 'Total time: %{time_total}s\n' $URL >> $trackingfile &
+    perf $URL 
+
+
 index=$((index-1))
 done
